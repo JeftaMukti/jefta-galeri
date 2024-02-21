@@ -21,5 +21,10 @@ class Photo extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
+    }
     
 }
