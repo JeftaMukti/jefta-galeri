@@ -17,9 +17,15 @@
                     </x-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('albums.index')" :active="request()->routeIs('albums.index')">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex ">
+                    <x-nav-link :href="route('albums.index','albums.create')" :active="request()->routeIs('albums.index','albums.create')">
                         {{ __('Albums') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex ">
+                    <x-nav-link :href="route('photos.index')" :active="request()->routeIs('photos.index')">
+                        {{ __('Photo') }}
                     </x-nav-link>
                 </div>
             </div>

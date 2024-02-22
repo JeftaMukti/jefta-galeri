@@ -20,21 +20,23 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($albums as $album)
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap">{{ $album->name_album }}</td>
-                                <td class="px-6 py-4 whitespace-no-wrap">{{ $album->deskripsi }}</td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                    <a href="{{ route('albums.show', $album->id) }}" class="text-indigo-600 hover:text-indigo-900">View</a>
-                                    <a href="{{ route('albums.edit', $album->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    <form action="{{ route('albums.destroy', $album->id) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
+                                @if ($album->user_id === auth()->id())
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $album->name_album }}</td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $album->deskripsi }}</td>
+                                        <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                                            <a href="{{ route('albums.show', $album->id) }}" class="text-indigo-600 hover:text-indigo-900">View</a>
+                                            <a href="{{ route('albums.edit', $album->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <form action="{{ route('albums.destroy', $album->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
-                        </tbody>
+                        </tbody>                        
                     </table>
                 </div>
             </div>

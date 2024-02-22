@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $photo = Photo::with('user')->get();
+        return view('photos.index', compact('photo'));
     }
 
     /**

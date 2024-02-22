@@ -58,31 +58,29 @@ class AlbumController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Album $album)
-    {
-        if ($album->user_id !== User::id()) {
-            abort(403);
-        }
+{
+    // Tidak perlu mengambil koleksi album lagi, karena objek album sudah diteruskan oleh Laravel
+    return view('albums.edit', compact('album'));
+}
+
+public function update(Request $request, Album $album)
+{
+    // Tidak perlu mengambil koleksi album lagi, karena objek album sudah diteruskan oleh Laravel
+    if ($album->user_id !== Auth::id()) {
+        abort(403);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id, Album $album)
-    {
-        if ($album->user_id !== User::id()) {
-            abort(403);
-        }
-
-        $album->update($request->all());
-        return redirect()->route('albums.index')->with('success','data Berhasil Di Edit');
-    }
+    $album->update($request->all());
+    return redirect()->route('albums.index')->with('success','Data Berhasil Di Edit');
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, Album $album)
+    public function destroy( Album $album)
     {
-        if ($album->user_id !== User::id()) {
+        $albums = Album::where('user_id', auth()->id())->get();
+        if ($album->user_id !== Auth::id()) {
             abort(403);
         }
 

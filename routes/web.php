@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('web')->group(function ()
 {
     Route::resource('/albums',AlbumController::class);
+    Route::resource('/photos',PhotoController::class);
 });
 
 require __DIR__.'/auth.php';
