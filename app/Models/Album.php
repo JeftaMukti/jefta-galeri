@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Album extends Model
 {
     use HasFactory;
+    protected $table = 'albums';
     protected $fillable = [
-        "nama_album",
+        "name_album",
         "deskripsi",
         "user_id",
     ];
@@ -20,6 +21,6 @@ class Album extends Model
 
     public function photo()
     {
-        return $this->belongsTo(Photo::class);  
+        return $this->belongsTo(Photo::class);
     }
 }

@@ -6,6 +6,7 @@ use  App\Models\User;
 use  App\Models\Album;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AlbumController extends Controller
 {
@@ -24,7 +25,7 @@ class AlbumController extends Controller
     public function create()
     {
         // Get currently logged-in user
-        $user = User::user();
+        $user = Auth::user();
 
         return view('albums.create', compact('user'));
     }
@@ -34,10 +35,10 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::user();
+        $user = Auth::user();
 
         $album = Album::create([
-            'nama_album' => $request->nama_album,
+            'name_album' => $request->name_album,
             'deskripsi'=> $request->deskripsi,
             'user_id'=> $user->id,
         ]);
