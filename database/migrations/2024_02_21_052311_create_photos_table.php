@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('judul_foto');
             $table->text('deskripsi_foto');
-            $table->date('tanggal_unggah');
             $table->string('image');
             $table->foreignId('album_id')->constrained('albums');
             $table->foreignId('user_id')->constrained('users');

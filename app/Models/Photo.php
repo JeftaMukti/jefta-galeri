@@ -11,7 +11,6 @@ class Photo extends Model
     protected $fillable = [
         "judul_foto",
         "deskripsi_foto",
-        "tanggal_unggah",
         "image",
         "album_id",
         "user_id",
@@ -26,5 +25,6 @@ class Photo extends Model
     {
         return $this->belongsTo(Album::class);
     }
+    
     
 }

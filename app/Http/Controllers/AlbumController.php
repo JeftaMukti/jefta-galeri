@@ -37,6 +37,11 @@ class AlbumController extends Controller
     {
         $user = Auth::user();
 
+        $request->validate([
+            'name_album' => 'required',
+            'deskripsi'=> 'required',
+        ]);
+
         $album = Album::create([
             'name_album' => $request->name_album,
             'deskripsi'=> $request->deskripsi,
