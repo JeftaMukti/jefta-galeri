@@ -10,17 +10,18 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function store(Request $request, $photo_id)
+
+    public function store(Request $request, $photoId)
     {
         $request->validate([
             'body' => 'required|string',
         ]);
 
-        $comment = new Comment();
-        $comment->body = $request->body;
-        $comment->user_id = $request->user_id;
-        $comment->photo_id = $photo_id;
-        $comment->save();
+        $comments = new Comment();
+        $comments->body = $request->body;
+        $comments->user_id = auth()->id();
+        $comments->photo_id = $photoId;
+        $comments->save();
 
         return back()->with('success','Comment Berhasil Di Tambahkan');
     }

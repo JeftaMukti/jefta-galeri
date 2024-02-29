@@ -40,8 +40,8 @@ Route::middleware('web')->group(function ()
 {
     Route::resource('/albums',AlbumController::class);
     Route::resource('/photos',PhotoController::class);
-    Route::post('photos/{photo}/comments',[CommentController::class, 'store'])->name('comments.store');
-    Route::delete('comments/{comment}',[CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::post('/comments/{photoId}', [CommentController::class, 'store'])->name('profile.comments.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 });
 
