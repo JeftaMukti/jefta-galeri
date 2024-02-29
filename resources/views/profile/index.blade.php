@@ -16,7 +16,9 @@
                     <div class="grid grid-cols-3 gap-4 mb-4">
                         @foreach ($user->photos as $photo)
                             <div class="bg-white rounded-lg overflow-hidden shadow-md">
-                                <img src="{{ asset('images/' . $photo->image) }}" alt="Photo" class="w-full h-auto">
+                                <a href="{{ route('profile.show', $photo->id) }}">
+                                    <img src="{{ asset('images/' . $photo->image) }}" alt="Photo" class="w-full h-auto">
+                                </a>
                                 <div class="p-4">
                                     <h3 class="text-lg font-semibold mb-2">{{ $photo->judul_foto }}</h3>
                                     <p class="text-gray-500">{{ $photo->deskripsi_foto }}</p>
@@ -48,7 +50,7 @@
                                 </div>
                             </div>
                         @endforeach
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
