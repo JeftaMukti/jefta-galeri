@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('judul_foto');
             $table->text('deskripsi_foto');
             $table->string('image');
-            $table->foreignId('album_id')->constrained('albums');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('album_id')->constrained('albums')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

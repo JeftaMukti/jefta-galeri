@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Like;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -34,7 +35,8 @@ class ProfileController extends Controller
         $user = User::with('photos','albums')->find(Auth::id());
         $photos = $user->photos->where('id', $photoId)->first();
         $comments = Comment::where('photo_id', $photoId)->get();
-        return view('profile.show',compact('user','photos','comments'));
+        $likes = Like::where('photo_id', $photoId)->get();
+        return view('profile.show',compact('user','photos','comments','likes'));
     }
 
     /**

@@ -42,6 +42,8 @@ Route::middleware('web')->group(function ()
     Route::resource('/photos',PhotoController::class);
     Route::post('/comments/{photoId}', [CommentController::class, 'store'])->name('profile.comments.store');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::post('/photos/{photo}/like', [PhotoController::class, 'like'])->name('photos.like');
+
 
 });
 

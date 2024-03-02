@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Photo;
 use App\Models\Album;
-use App\Models\User;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -126,5 +126,22 @@ class PhotoController extends Controller
 
         $photo->delete();
         return redirect()->route('photos.index')->with('success','Data Berhasil Di Hapus');
+    }
+
+    public function like($photoId)
+    {
+        $userId = auth()->id();
+
+        $like = Like::where('user_id',$userId)->where('photo_id',$photoId)->first();
+
+        if (!$like) {
+            Like::create([
+                'user_id'=> $userId,
+                'photo_id' => $photoId,
+            ]);
+        }else{
+            $like->delete();
+        }
+        return back()->with('success','data berhasil');
     }
 }
