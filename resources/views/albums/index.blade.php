@@ -13,15 +13,17 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead>
                             <tr>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">#</th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Description</th>
                                 <th class="px-6 py-3 bg-gray-50"></th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($albums as $album)
+                            @foreach ($albums as $i => $album)
                                 @if ($album->user_id === auth()->id())
                                     <tr>
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $i + 1 }}</td>
                                         <td class="px-6 py-4 whitespace-no-wrap">{{ $album->name_album }}</td>
                                         <td class="px-6 py-4 whitespace-no-wrap">{{ $album->deskripsi }}</td>
                                         <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">

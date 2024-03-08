@@ -35,7 +35,7 @@
                         <!-- List Likes -->
                         <ul>
                             @foreach($likes as $like)
-                            <li class="text-gray-900 dark:text-gray-400 text-sm">{{ $like->user->name }}</li>
+                            <li class="text-gray-900 dark:text-gray-400 text-sm">{{ $like->user->username }}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -71,7 +71,7 @@
                         <div class="flex items-start mb-4">
                             <img class="w-10 h-10 rounded-full mr-3" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Michael Gough">
                             <div>
-                                <p class="text-gray-900 dark:text-black font-semibold">{{ $comment->user->name }}</p>
+                                <p class="text-gray-900 dark:text-black font-semibold">{{ $comment->user->username }}</p>
                                 <p class="text-gray-500 dark:text-gray-400 text-sm">{{ $comment->created_at->format('M d, Y') }}</p>
                             </div>
                         </div>

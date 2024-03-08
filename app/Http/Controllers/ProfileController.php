@@ -85,4 +85,12 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $result = User::where('name','like', "%$search%")->get();
+
+        return view('dashboard',['result' => $result]);
+    }
 }

@@ -12,11 +12,11 @@
                     <form method="POST" action="{{ route('albums.store') }}">
                         @csrf
                         <div>
-                            <label for="name_album" :value="__('Album Name')" />
+                            <label for="name_album" class="block text-sm font-medium text-gray-600">Album Name</label>
                             <input id="name_album" class="block mt-1 w-full" type="text" name="name_album" required autofocus />
                         </div>
                         <div class="mt-4">
-                            <label for="deskripsi" :value="__('Description')" />
+                            <label for="deskripsi" class="block text-sm font-medium text-gray-600">Description</label>
                             <textarea id="deskripsi" name="deskripsi" class="block mt-1 w-full"></textarea>
                         </div>
                         <div class="flex items-center justify-end mt-4">

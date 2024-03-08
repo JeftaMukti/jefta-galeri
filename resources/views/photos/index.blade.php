@@ -13,6 +13,7 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead>
                             <tr>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">#</th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Title</th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Description</th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Image</th>
@@ -21,14 +22,15 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($photo as $photo)
+                            @foreach ($photo as $i => $photo)
                             @if ($photo->user_id === auth()->id())
                                 <tr>
+                                    <td class="px-6 py-4 whitespace-no-wrap">{{ $i + 1 }}</td>
                                     <td class="px-6 py-4 whitespace-no-wrap">{{ $photo->judul_foto }}</td>
                                     <td class="px-6 py-4 whitespace-no-wrap">{{ $photo->deskripsi_foto }}</td>
                                     <td class="px-6 py-4 whitespace-no-wrap">
                                         <img src="{{ asset('images/' . $photo->image) }}" alt="Photo Image" class="h-20 w-20 object-cover">
-                                    </td>                                    
+                                    </td>
                                     <td class="px-6 py-4 whitespace-no-wrap">{{ $photo->album->name_album }}</td>
                                     <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
                                         <a href="{{ route('photos.edit', $photo->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
