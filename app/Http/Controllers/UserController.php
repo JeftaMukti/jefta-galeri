@@ -7,15 +7,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function search(Request $request)
+    public function album(User $user)
     {
-        $query = $request->input('query');
-        $user = User::where('name', 'like', '%' . $query . '%')->get();
-        return view('dashboard', compact('user'));
-    }
-
-    public function profile(User $user)
-    {
-        return view('profile', compact('user'));
+        return view('profile.album', compact('user'));
     }
 }

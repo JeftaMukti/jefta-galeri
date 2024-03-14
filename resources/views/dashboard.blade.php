@@ -19,11 +19,11 @@
                             @foreach($users as $user)
                                 <li>
                                     <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
-                                        <a href="{{ route('profile', $user->id) }}" class="block">
-                                            <img src="{{ $user->profile_image }}" alt="{{ $user->name }}" class="w-full h-48 object-cover rounded-t-lg">
+                                        <a href="{{ route('profile.index2', $user->id) }}" class="block">
+                                            <p class="w-full h-48 object-cover rounded-t-lg">{{ $user->username }}</p>
                                         </a>
                                         <div class="p-4">
-                                            <a href="{{ route('profile', $user->id) }}" class="font-semibold text-lg text-indigo-600 hover:text-indigo-800">{{ $user->name }}</a>
+                                            <a href="{{ route('profile.index2', $user->id) }}" class="font-semibold text-lg text-indigo-600 hover:text-indigo-800">{{ $user->name }}</a>
                                             <p class="text-gray-500">{{ $user->email }}</p>
                                         </div>
                                     </div>
