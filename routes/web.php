@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
@@ -33,7 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/search', [UserController::class, 'search'])->name('search');
-    Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile');
 });
 
 Route::middleware('web')->group(function ()
@@ -43,8 +43,9 @@ Route::middleware('web')->group(function ()
     Route::post('/comments/{photoId}', [CommentController::class, 'store'])->name('profile.comments.store');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
     Route::post('/photos/{photo}/like', [PhotoController::class, 'like'])->name('photos.like');
-
-
+    Route::get('/search', [SearchController::class,'search'])->name('search');
+    Route::get('/profile/{userId}', [ProfileController::class, 'indexById'])->name('profile.index2');
+    Route::get('/albums/{id}', [ProfileController::class,'albumId'])->name('profile.album2');
 });
 
 require __DIR__.'/auth.php';
