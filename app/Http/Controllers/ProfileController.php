@@ -22,12 +22,29 @@ class ProfileController extends Controller
         return view("profile.index", compact('user'));
     }
 
+    public function indexById($userId)
+    {
+        $user = User::with('photos','albums')->find($userId);
+        if (! $user) {
+            abort(404);
+        }
+        return view('profile.index2', compact('user'));
+    }
+
     public function indexAlbum($albumId)
     {
         $user = User::with('photos', 'albums')->find(Auth::id());
         $album = $user->albums->where('id', $albumId)->first(); // Fetch the album based on the provided album ID
         $photos = $album->photo()->paginate(9);
         return view("profile.album", compact('user', 'album', 'photos'));
+    }
+
+    public function albumId($albumId)
+    {
+        $user = User::with('photos', 'albums')->find($albumId);
+        $album = $user->albums->where('id', $albumId)->first(); // Fetch the album based on the provided album ID
+        $photos = $album->photo()->paginate(9);
+        return view("profile.album2", compact('user', 'album', 'photos'));
     }
 
     public function show($photoId)
