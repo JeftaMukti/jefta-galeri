@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Brian2694\Toastr\Facades\Toastr;
 use  App\Models\User;
 use  App\Models\Album;
 use App\Http\Controllers\Controller;
@@ -48,7 +48,8 @@ class AlbumController extends Controller
             'user_id'=> $user->id,
         ]);
 
-        return redirect()->route('albums.index')->with('success','Data Berhasil Di Buat');
+        Toastr::success('Data Berhasil Ditambahkan :)', 'Success!!');
+        return redirect()->route('albums.index');
     }
 
     /**
@@ -66,6 +67,7 @@ class AlbumController extends Controller
 {
     // Tidak perlu mengambil koleksi album lagi, karena objek album sudah diteruskan oleh Laravel
     return view('albums.edit', compact('album'));
+
 }
 
 public function update(Request $request, Album $album)
@@ -76,6 +78,7 @@ public function update(Request $request, Album $album)
     }
 
     $album->update($request->all());
+    Toastr::success('Data Berhasil Diubah :)', 'Success!!');
     return redirect()->route('albums.index')->with('success','Data Berhasil Di Edit');
 }
 
@@ -90,6 +93,7 @@ public function update(Request $request, Album $album)
         }
 
         $album->delete();
+        Toastr::success('Data Berhasil Dihapus :)', 'Success!!');
         return redirect()->route('albums.index')->with('success','Data Berhasil Di Hapus');
     }
 }

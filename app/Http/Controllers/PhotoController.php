@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
 use App\Models\Photo;
 use App\Models\Album;
@@ -44,9 +44,9 @@ class PhotoController extends Controller
             'album_id'=> 'required|exists:albums,id',
         ]);
 
-        $imageName = time().'.'.$request->image->extension();  
-         
-        $request->image->move(public_path('images'), $imageName); 
+        $imageName = time().'.'.$request->image->extension();
+
+        $request->image->move(public_path('images'), $imageName);
 
         $photo = Photo::create([
             'judul_foto' => $request->judul_foto,
@@ -55,6 +55,7 @@ class PhotoController extends Controller
             'album_id' => $request->album_id,
             'user_id'=> $user->id,
         ]);
+        Toastr::success('Data Berhasil Ditambahkan :)', 'Success!!');
         return redirect()->route('photos.index')->with('success','Data Berhasil di ');
     }
 
@@ -98,8 +99,8 @@ class PhotoController extends Controller
 
     if ($request->hasFile('image')) {
         // Upload new image
-        $imageName = time().'.'.$request->image->extension();  
-        $request->image->move(public_path('images'), $imageName); 
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
 
         // Delete old image
         if (file_exists(public_path('images/' . $photo->image))) {
@@ -110,6 +111,7 @@ class PhotoController extends Controller
     }
 
     $photo->update($data);
+    Toastr::success('Data Berhasil Diubah :)', 'Success!!');
     return redirect()->route('photos.index')->with('success','Data Berhasil Di Edit');
 }
 
@@ -125,6 +127,7 @@ class PhotoController extends Controller
         }
 
         $photo->delete();
+        Toastr::success('Data Berhasil Dihapus :)', 'Success!!');
         return redirect()->route('photos.index')->with('success','Data Berhasil Di Hapus');
     }
 
